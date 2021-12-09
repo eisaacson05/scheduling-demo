@@ -17,13 +17,6 @@ module ScheduleService
 		Time.at(hour_integer.hours).utc.strftime("%l:%M %p")
 	end
 
-	# get css for absolute positioned work orders
-	#
-	def self.css_for_work_order(work_order, first_tod)
-		top = (work_order.time.hour - first_tod) * PIXELS_Y_PER_HOUR_ROW
-		height = (work_order.duration.to_f / MINUTES_PER_HOUR.to_f) * PIXELS_Y_PER_HOUR_ROW
-	end
-
 	# get css for absolute positioned free times
 	#
 	def self.free_times(work_orders, first_hour)
@@ -48,7 +41,6 @@ module ScheduleService
 			top = order_prev.css_top(first_hour) + order_prev.css_height
 			height = order.css_top(first_hour) - top
 			minutes_between_orders = order.time - (order_prev.time + order_prev.duration.minutes)
-
 			{
 				css: "top: #{ top }px; height: #{ height }px",
 				display_time: Time.at(minutes_between_orders).utc.strftime("%H:%M:%S")

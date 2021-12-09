@@ -37,7 +37,7 @@
           <div
             class="work-order-cell shadow p-3"
             style="top:<%= work_order.css_top(@tod_range.first) %>px;
-                  height:<%= work_order.css_height %>px"
+                   height:<%= work_order.css_height %>px"
           >
             <p>
               <%= work_order.location.name  %>,
@@ -55,7 +55,6 @@
         <!-- BEGIN ABSOLUTE POS FREE TIMES -->
         <% ScheduleService::free_times(technician.work_orders, @tod_range.first).each do |free_time| %>
           <div class="free-time-cell"
-               onclick="console.log('<%= free_time[:display_time] %>')"
                style="<%= free_time[:css] %>">
           </div>
         <% end %>
@@ -65,3 +64,16 @@
   <% end %>
   <!-- END TECHNICIAN COLUMNS -->
 </div>
+
+<!-- BEGIN MODAL -->
+<div id="free-time-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-close-container">
+      <span class="close">&times;</span>
+    </div>
+    <div class="modal-text-container">
+      <p>Some text in the Modal..</p>
+    </div>
+  </div>
+</div>
+<!-- END MODAL -->
