@@ -31,3 +31,16 @@
   height: 50px;
   padding: 5px;
 }
+
+.work-order-cell {
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 0.5;
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  text-align: left;
+  background-color: #3ce218;
+  text-color: white;
+}
