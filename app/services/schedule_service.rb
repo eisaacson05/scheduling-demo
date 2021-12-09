@@ -39,7 +39,7 @@ module ScheduleService
 		height= first_order.css_top(first_hour)
 		{
 			css: "top: 0px; height: #{ height }px",
-			time_between_orders: "" # TODO
+			display_time: "" # TODO
 		}
 	end
 
@@ -47,9 +47,11 @@ module ScheduleService
 		work_orders.each_cons(2).map do | order_prev, order |
 			top = order_prev.css_top(first_hour) + order_prev.css_height
 			height = order.css_top(first_hour) - top
+			minutes_between_orders = order.time - (order_prev.time + order_prev.duration.minutes)
+
 			{
 				css: "top: #{ top }px; height: #{ height }px",
-				time_between_orders: "" # TODO
+				display_time: Time.at(minutes_between_orders).utc.strftime("%H:%M:%S")
 			}
 		end
 	end
@@ -58,7 +60,7 @@ module ScheduleService
 		top = last_order.css_top(first_hour) + last_order.css_height
 		{
 			css: "top: #{ top }px; bottom: 0px",
-			time_between_orders: "" # TODO
+			display_time: "" # TODO
 		}
 	end
 end

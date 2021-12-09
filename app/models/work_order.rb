@@ -2,6 +2,10 @@ class WorkOrder < ApplicationRecord
   belongs_to :technician
   belongs_to :location
 
+  def end
+    self.time + self.duration.minutes
+  end
+
   def pretty_tod
     self.time.utc.strftime("%l:%M %p")
   end

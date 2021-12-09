@@ -43,6 +43,7 @@
               <%= work_order.location.name  %>,
               <%= work_order.location.city  %>
               @ <%= work_order.pretty_tod  %>
+              <%= work_order.duration  %>
             </p>
             <p>
               Price: <%= work_order.pretty_price %>
@@ -54,6 +55,7 @@
         <!-- BEGIN ABSOLUTE POS FREE TIMES -->
         <% ScheduleService::free_times(technician.work_orders, @tod_range.first).each do |free_time| %>
           <div class="free-time-cell"
+               onclick="console.log('<%= free_time[:display_time] %>')"
                style="<%= free_time[:css] %>">
           </div>
         <% end %>
