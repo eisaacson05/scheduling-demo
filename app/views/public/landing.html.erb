@@ -1,5 +1,14 @@
 <div class="row h-100">
-  <div class="col-4"></div>
+  <div class="col-4">
+    <div class="col-1 mt-5 p-0 d-flex flex-column">
+      <div class="column-heading-no-bg"></div>
+      <% @tod_range.each do |h| %>
+        <div class="hour-cell">
+            <%= h %>
+        </div>
+      <% end %>
+    </div>
+  </div>
   <div class="col-4"><p>Foo</p></div>
   <div class="col-4"></div>
 </div>
