@@ -12,7 +12,6 @@
   <!-- END TIME COLUMN -->
 
   <!-- BEGIN TECHNICIAN COLUMNS -->
-
   <% @technicians.all.each do |technician| %>
 
     <div class="technician-col col mt-5 p-0 d-flex flex-column">
@@ -25,7 +24,7 @@
       </div>
       <!-- END COLUMN HEADING -->
 
-      <div style="position: relative" class="d-flex flex-fill flex-column">
+      <div class="position-relative d-flex flex-fill flex-column">
 
         <!-- BEGIN HOUR LINES -->
         <% @tod_range.each do |h| %>
@@ -33,12 +32,12 @@
         <% end %>
         <!-- END HOUR LINES -->
 
-        <!-- BEGIN ABSOLUTE SCHEDULE ITEMS -->
+        <!-- BEGIN ABSOLUTE POS WORK ORDERS -->
         <% technician.work_orders.each do |work_order| %>
-          <% css_string = ScheduleService::css_for_work_order(work_order, @tod_range.first) %>
           <div
-            style="<%= css_string %>"
             class="work-order-cell shadow p-3"
+            style="top:<%= work_order.css_top(@tod_range.first) %>px;
+                  height:<%= work_order.css_height %>px"
           >
             <p>
               <%= work_order.location.name  %>,
@@ -50,7 +49,15 @@
             </p>
           </div>
         <% end %>
-        <!-- END ABSOLUTE SCHEDULE ITEMS -->
+        <!-- END ABSOLUTE POS WORK ORDERS -->
+
+        <!-- BEGIN ABSOLUTE POS FREE TIMES -->
+        <% ScheduleService::free_times(technician.work_orders, @tod_range.first).each do |free_time| %>
+          <div class="free-time-cell"
+               style="<%= free_time[:css] %>">
+          </div>
+        <% end %>
+        <!-- END ABSOLUTE FREE TIMES -->
       </div>
     </div>
   <% end %>
