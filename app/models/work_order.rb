@@ -15,7 +15,9 @@ class WorkOrder < ApplicationRecord
   end
 
   def css_top(first_hour)
-    (self.time.hour - first_hour) * ScheduleService::PIXELS_Y_PER_HOUR_ROW
+    minutes = (self.time.hour * ScheduleService::MINUTES_PER_HOUR) + self.time.min
+    minutes_offset = first_hour * ScheduleService::MINUTES_PER_HOUR # need to account for starting later than beginning of day
+    (minutes - minutes_offset).to_f / ScheduleService::MINUTES_PER_HOUR * ScheduleService::PIXELS_Y_PER_HOUR_ROW
   end
 
   def css_height
