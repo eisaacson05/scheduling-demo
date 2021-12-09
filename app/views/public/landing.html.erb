@@ -11,6 +11,27 @@
   </div>
   <!-- END TIME COLUMN -->
 
-  <div class="col-4"><p>Foo</p></div>
-  <div class="col-4"></div>
+  <!-- BEGIN TECHNICIAN COLUMNS -->
+
+  <% @technicians.all.each do |technician| %>
+
+    <div class="technician-col col mt-5 p-0 d-flex flex-column">
+
+      <div class="column-heading">
+        <div class="badge">
+          <%= technician.name.titleize %>
+        </div>
+      </div>
+
+      <% @tod_range.each do |h| %>
+        <div class="hour-cell">
+        </div>
+      <% end %>
+
+
+    </div>
+
+  <% end %>
+  <!-- END TECHNICIAN COLUMNS -->
+
 </div>

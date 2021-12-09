@@ -20,3 +20,14 @@
   height: 75px;
   border-top: 2px dotted gray;
 }
+
+.column-heading {
+  height: 50px;
+  padding: 5px;
+  background-color: lightgray;
+}
+
+.column-heading-no-bg {
+  height: 50px;
+  padding: 5px;
+}
