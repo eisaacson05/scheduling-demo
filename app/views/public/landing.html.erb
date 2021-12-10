@@ -39,7 +39,7 @@
           <%= technician.name.titleize %>
         </h6>
         <% if invalid_orders.present? %>
-          <small class="text-danger font-weight-bold">
+          <small class="schedule-conflict-text font-weight-bold">
             <%= invalid_orders.length %> Schedule Conflict Hidden From View
           </small>
         <% end %>

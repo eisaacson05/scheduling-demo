@@ -1,9 +1,16 @@
 
 $cell-height: 75px;
 
+.schedule-conflict-text {
+  color: #ff4545
+}
+
 .hour-cell {
   height: $cell-height;
   border-bottom: 1px solid gray;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .column-heading {
@@ -16,6 +23,9 @@ $cell-height: 75px;
   margin-left: 2.5%;
   margin-right: 2.5%;
   margin-bottom: 5px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .column-heading-no-bg  {
@@ -33,6 +43,9 @@ $cell-height: 75px;
   transform: translate(-50%, 0%);
   text-align: left;
   background-color: #3ce218;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .free-time-cell {
