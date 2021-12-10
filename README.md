@@ -30,6 +30,7 @@
  * Backlisted:
    - CRUD
    - authorization / authentication 
+   - layout fixes for mobile / small screens
    - time zones
    - prod mode
    - ask client for more
