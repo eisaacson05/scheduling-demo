@@ -1,4 +1,6 @@
 
+<%= render :partial => "partials/modal"  %>
+
 <div class="row mt-5">
   <div class="col-1"></div>
   <div class="col-11 pl-0 ">
@@ -16,7 +18,9 @@
     <div class="column-heading-no-bg"></div>
     <% @tod_range_pretty.each do |h| %>
       <div class="hour-cell font-weight-light">
-        <%= h %>
+        <p class="ml-3">
+          <%= h %>
+        </p>
       </div>
     <% end %>
   </div>
@@ -88,18 +92,3 @@
   <% end %>
   <!-- END TECHNICIAN COLUMNS -->
 </div>
-
-<!-- BEGIN MODAL -->
-<div id="modal" class="modal">
-  <div class="modal-content">
-    <div class="modal-close-container">
-      <span class="close">&times;</span>
-    </div>
-    <div class="modal-text-container">
-      <h6>
-          Time Available: <span id="modal-text" ></span>
-      </h6>
-    </div>
-  </div>
-</div>
-<!-- END MODAL -->
