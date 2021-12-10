@@ -3,16 +3,16 @@
   <!-- BEGIN TIME COLUMN -->
   <div class="col-1 mt-5 p-0 d-flex flex-column">
     <div class="column-heading-no-bg"></div>
-    <% @tod_range.each do |h| %>
+    <% @tod_range_pretty.each do |h| %>
       <div class="hour-cell">
-        <%= ScheduleService::prettify_tod_hour(h) %>
+        <%= h %>
       </div>
     <% end %>
   </div>
   <!-- END TIME COLUMN -->
 
   <!-- BEGIN TECHNICIAN COLUMNS -->
-  <% @technicians.all.each do |technician| %>
+  <% @valid_orders_by_tech.each do |technician, valid_orders| %>
 
     <div class="technician-col col mt-5 p-0 d-flex flex-column">
 
@@ -27,17 +27,18 @@
       <div class="position-relative d-flex flex-fill flex-column">
 
         <!-- BEGIN HOUR LINES -->
-        <% @tod_range.each do |h| %>
+        <% @tod_range_pretty.each do |_| %>
           <div class="hour-cell"></div>
         <% end %>
         <!-- END HOUR LINES -->
 
         <!-- BEGIN ABSOLUTE POS WORK ORDERS -->
-        <% technician.work_orders.each do |work_order| %>
+        <% css_array = @valid_orders_css.select { |css| css[:technician_id] == technician.id } %>
+        <% [valid_orders, css_array].transpose.each do | work_order, css | %>
+
           <div
             class="work-order-cell shadow p-3"
-            style="top:<%= work_order.css_top(@tod_range.first) %>px;
-                   height:<%= work_order.css_height %>px"
+            style="top:<%= css[:top] %>px; height:<%= css[:height] %>px"
           >
             <p>
               <%= work_order.location.name  %>,
@@ -53,12 +54,17 @@
         <!-- END ABSOLUTE POS WORK ORDERS -->
 
         <!-- BEGIN ABSOLUTE POS FREE TIMES -->
-        <% ScheduleService::free_times(technician.work_orders, @tod_range.first).each do |free_time| %>
+        <% @free_time_hash[technician.id][0..-1].each do |css| %>
           <div class="free-time-cell"
-               data-time-available="<%= free_time[:time_available_pretty] %>"
-               style="<%= free_time[:css] %>">
-          </div>
+               style="top:<%= css[:top] %>px; height:<%= css[:height] %>px"
+          ></div>
         <% end %>
+
+        <% #in last case we use bottom: 0 instead of height %>
+        <% css = @free_time_hash[technician.id].last %>
+        <div class="free-time-cell"
+             style="top:<%= css[:top] %>px; bottom: 0px"
+        ></div>
         <!-- END ABSOLUTE FREE TIMES -->
       </div>
     </div>

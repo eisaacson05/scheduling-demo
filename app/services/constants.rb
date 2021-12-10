@@ -1,0 +1,9 @@
+module Constants
+	MINUTES_PER_HOUR= 60
+	PIXELS_Y_PER_HOUR= 75
+	PIXELS_Y_PER_MINUTE=  PIXELS_Y_PER_HOUR.to_f / MINUTES_PER_HOUR
+
+	# TODO: these times are assumptions for now
+	BEGINNING_OF_WORK_DAY_HR=6 # 6am
+	END_OF_WORK_DAY_HR=18 # 6pm
+end
