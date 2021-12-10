@@ -10,7 +10,7 @@
 
 ## Method: 
   * SQLite db for low setup overhead. 
-  * Compute absolute positions and free time durations from a fixed y-pixels-per-hour. 
+  * Compute absolute positions or work orders, free times, and durations of free times from a fixed y-pixels-per-hour. 
   * Pass free time durations to the front-end in the html data attribute, for later display in the modal. 
 
 ## Challenges: 
