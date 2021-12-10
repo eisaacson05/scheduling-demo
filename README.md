@@ -4,9 +4,9 @@
 ## Repo: https://github.com/eisaacson05/scheduling-demo
 
 ## Setup: 
-  1. yarn
-  2. rake db:create db:migrate import:all
-  3. rails server -e development
+  1. `yarn`
+  2. `rake db:create db:migrate import:all`
+  3. `rails server -e development`
 
 ## Method: 
   * SQLite db for low setup overhead. 
@@ -19,14 +19,14 @@
   * A service worker became bloated after some development, so divided it's functionality into smaller workers for better coupling / cohesion.
 
 ## Improvements: 
- * First priority- untested conditions:
+ * First priority are untested conditions (EG bugs):
     - What if a technician has no work orders? 
     - What if there were many technicians compacting the UI in the x direction? 
     - What if there are no technicians scheduled?
     - etc.
  * Second priority:
    - Look into managing view complexity. Partials could help.
-   - Removing all orders that are double booked, not just the one would be better.
+   - Removing all orders that are double booked, not just one from every conflicting pair.
  * Backlisted:
    - CRUD
    - authorization / authentication 
