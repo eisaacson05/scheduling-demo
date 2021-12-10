@@ -18,6 +18,10 @@ class PublicController < ApplicationController
 		# handle free time css calculations and duration calculations
 		free_time_by_tech = FreeTimeCss::generate(@valid_orders_css)
 		@free_time_by_tech = FreeTimeDuration::generate(free_time_by_tech, tod_range_ints)
+
+		# work day range
+		@work_day_start_pretty= helpers.prettify_tod_hour(Constants::BEGINNING_OF_WORK_DAY_HR)
+		@work_day_end_pretty= helpers.prettify_tod_hour(Constants::END_OF_WORK_DAY_HR)
 	end
 
 end

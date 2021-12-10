@@ -3,8 +3,6 @@ class WorkOrder < ApplicationRecord
   belongs_to :technician
   belongs_to :location
 
-  scope :long_title, -> { where("LENGTH(title) > 20") }
-
   def pretty_tod
     self.time.utc.strftime("%l:%M %p")
   end

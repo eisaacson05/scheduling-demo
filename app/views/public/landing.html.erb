@@ -1,7 +1,15 @@
+
+<div class="row mt-2">
+  <div class="col-1"></div>
+  <div class="col-11 pl-0">
+    <p>Work Day: <%= @work_day_start_pretty %> - <%= @work_day_end_pretty %></p>
+  </div>
+</div>
+
 <div class="row h-100">
 
   <!-- BEGIN TIME COLUMN -->
-  <div class="col-1 mt-5 p-0 d-flex flex-column">
+  <div class="col-1 p-0 d-flex flex-column">
     <div class="column-heading-no-bg"></div>
     <% @tod_range_pretty.each do |h| %>
       <div class="hour-cell">
@@ -14,7 +22,7 @@
   <!-- BEGIN TECHNICIAN COLUMNS -->
   <% @valid_orders_by_tech.each do |technician, valid_orders| %>
 
-    <div class="technician-col col mt-5 p-0 d-flex flex-column">
+    <div class="technician-col col p-0 d-flex flex-column">
 
       <% invalid_orders = @invalid_orders_by_tech_id[technician.id] %>
 
