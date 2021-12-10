@@ -3,35 +3,31 @@ $cell-height: 75px;
 
 .hour-cell {
   height: $cell-height;
-  border-bottom: 2px dotted gray;
+  border-bottom: 1px solid gray;
 }
 
 .column-heading {
-  p {
-    font-size: 90%;
-    font-weight: 700;
-    line-height: 0.5;
-    text-align: left
-  }
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: $cell-height;
   padding: 10px;
   background-color: lightgray;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+  margin-bottom: 5px;
 }
 
-.column-heading-no-bg {
-  height: $cell-height;
-  padding: 5px;
+.column-heading-no-bg  {
+  @extend .column-heading;
+  background: none;
 }
 
 .work-order-cell {
   font-size: 90%;
   font-weight: 700;
   line-height: 0.5;
-  width: 100%;
+  width: 95%;
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0%);
@@ -44,7 +40,7 @@ $cell-height: 75px;
   font-size: 75%;
   font-weight: 700;
   line-height: 1;
-  width: 100%;
+  width: 95%;
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0%);

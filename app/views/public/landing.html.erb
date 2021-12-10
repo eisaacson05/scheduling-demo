@@ -1,8 +1,11 @@
 
-<div class="row mt-2">
+<div class="row mt-5">
   <div class="col-1"></div>
-  <div class="col-11 pl-0">
-    <p>Work Day: <%= @work_day_start_pretty %> - <%= @work_day_end_pretty %></p>
+  <div class="col-11 pl-0 ">
+    <h5 class="font-weight-light">
+      Work Day: <%= @work_day_start_pretty %> - <%= @work_day_end_pretty %>
+    </h5>
+    <hr>
   </div>
 </div>
 
@@ -12,7 +15,7 @@
   <div class="col-1 p-0 d-flex flex-column">
     <div class="column-heading-no-bg"></div>
     <% @tod_range_pretty.each do |h| %>
-      <div class="hour-cell">
+      <div class="hour-cell font-weight-light">
         <%= h %>
       </div>
     <% end %>
@@ -27,15 +30,14 @@
       <% invalid_orders = @invalid_orders_by_tech_id[technician.id] %>
 
       <!-- BEGIN COLUMN HEADING -->
-      <div class="column-heading">
-        <p>
+      <div class="column-heading shadow ">
+        <h6 class="font-weight-bold">
           <%= technician.name.titleize %>
-        </p>
-
+        </h6>
         <% if invalid_orders.present? %>
-          <p class="text-danger">
+          <small class="text-danger font-weight-bold">
             <%= invalid_orders.length %> Schedule Conflict Hidden From View
-          </p>
+          </small>
         <% end %>
       </div>
       <!-- END COLUMN HEADING -->
@@ -53,17 +55,14 @@
         <% [valid_orders, css_array].transpose.each do | work_order, css | %>
 
           <div
-            class="work-order-cell shadow p-3"
+            class="work-order-cell shadow p-2"
             style="top:<%= css[:top] %>px; height:<%= css[:height] %>px"
           >
-            <p>
-              <%= work_order.location.name  %>,
-              <%= work_order.location.city  %>
-              @ <%= work_order.pretty_tod  %>
-              <%= work_order.duration  %>
+            <p class="font-weight-bold">
+              <%= work_order.location.pretty %>
             </p>
-            <p>
-              Price: <%= work_order.pretty_price %>
+            <p class="font-weight-light">
+              <%= work_order.pretty_tod %> | <%= work_order.pretty_price %>
             </p>
           </div>
         <% end %>
@@ -97,7 +96,9 @@
       <span class="close">&times;</span>
     </div>
     <div class="modal-text-container">
-      <p id="free-time-modal-text"></p>
+      <h6>
+          Time Available: <span id="free-time-modal-text" ></span>
+      </h6>
     </div>
   </div>
 </div>
