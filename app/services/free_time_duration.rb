@@ -21,6 +21,7 @@ module FreeTimeDuration
 		durations = durations.prepend self.duration_before_work(css_array.first, tod_range_ints)
 		durations = durations.append self.duration_after_work(css_array.last, tod_range_ints)
 
+		# make pretty
 		durations = durations.map { |min| self.duration_display_text(min) }
 
 		# add duration to css attributes
@@ -39,9 +40,9 @@ module FreeTimeDuration
 	end
 
 	def self.duration_after_work(css, tod_range_ints)
-		pix_before_origin = Constants::BEGINNING_OF_WORK_DAY_HR * Constants::PIXELS_Y_PER_HOUR
-		top_from_workday_start = css[:top] + pix_before_origin
+		pix_before_origin = tod_range_ints.first * Constants::PIXELS_Y_PER_HOUR
 		pix_to_end_of_workday = Constants::END_OF_WORK_DAY_HR * Constants::PIXELS_Y_PER_HOUR
+		top_from_workday_start = css[:top] + pix_before_origin
 		(pix_to_end_of_workday - top_from_workday_start) / Constants::PIXELS_Y_PER_MINUTE
 	end
 
