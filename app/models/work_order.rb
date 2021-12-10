@@ -3,13 +3,7 @@ class WorkOrder < ApplicationRecord
   belongs_to :technician
   belongs_to :location
 
-  def end
-    self.time + self.duration.minutes
-  end
-
-  def minutes_from_day_start
-    (self.time.hour * Constants::MINUTES_PER_HOUR) + self.time.min
-  end
+  scope :long_title, -> { where("LENGTH(title) > 20") }
 
   def pretty_tod
     self.time.utc.strftime("%l:%M %p")
@@ -20,7 +14,15 @@ class WorkOrder < ApplicationRecord
   end
 
   def is_valid?
-    true
+    all_scheduled_during.empty?
   end
 
+  def all_scheduled_during
+    WorkOrder.where({
+      time: self.time..(self.time + self.duration.minutes),
+      technician_id: self.technician_id
+    }).where.not({
+      id: self.id
+    })
+  end
 end

@@ -4,8 +4,18 @@
 }
 
 .column-heading {
+  p {
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 0.5;
+    text-align: left
+  }
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   height: 50px;
-  padding: 5px;
+  padding: 10px;
   background-color: lightgray;
 }
 

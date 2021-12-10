@@ -16,11 +16,19 @@
 
     <div class="technician-col col mt-5 p-0 d-flex flex-column">
 
+      <% invalid_orders = @invalid_orders_by_tech_id[technician.id] %>
+
       <!-- BEGIN COLUMN HEADING -->
       <div class="column-heading">
-        <div class="badge">
+        <p>
           <%= technician.name.titleize %>
-        </div>
+        </p>
+
+        <% if invalid_orders.present? %>
+          <p class="text-danger">
+            <%= invalid_orders.length %> Schedule Conflict Hidden From View
+          </p>
+        <% end %>
       </div>
       <!-- END COLUMN HEADING -->
 
