@@ -17,8 +17,10 @@ ActiveStorage.start()
 $(document).ready(function() {
 
     const modal = document.getElementById("free-time-modal");
-
-    $('.free-time-cell').on( 'click', () => {
+    const modal_text = document.getElementById("free-time-modal-text");
+    $('.free-time-cell').on( 'click', (e) => {
+        const time_available = e.target.dataset.timeAvailable;
+        modal_text.innerText = time_available;
         modal.style.display = "block";
         }
     );
