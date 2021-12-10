@@ -13,28 +13,24 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-
 $(document).ready(function() {
 
     const modal = document.getElementById("free-time-modal");
-    const modal_text = document.getElementById("free-time-modal-text");
+    const modalText = document.getElementById("free-time-modal-text");
+
+    // On free time click, display model
     $('.free-time-cell').on( 'click', (e) => {
-        const time_available = e.target.dataset.timeAvailable;
-        modal_text.innerText = time_available;
-        modal.style.display = "block";
+            const displayText = e.target.dataset.displayText;
+            modalText.innerText = displayText;
+            modal.style.display = "block";
         }
     );
 
-    $('.close').on( 'click', () => {
-        modal.style.display = "none";
-    })
+    // On exit button click, close modal
+    $('.close').on( 'click', () => { modal.style.display = "none"; })
 
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
+    // On click outside modal, close modal
+    window.onclick = (e) => {
+        if (e.target == modal)  e.style.display = "none"
     }
 });
-
-
-

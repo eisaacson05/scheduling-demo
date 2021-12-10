@@ -54,16 +54,18 @@
         <!-- END ABSOLUTE POS WORK ORDERS -->
 
         <!-- BEGIN ABSOLUTE POS FREE TIMES -->
-        <% @free_time_hash[technician.id][0..-1].each do |css| %>
+        <% @free_time_by_tech[technician.id][0..-1].each do |data| %>
           <div class="free-time-cell"
-               style="top:<%= css[:top] %>px; height:<%= css[:height] %>px"
+               data-display-text="<%= data[:duration] %>"
+               style="top:<%= data[:top] %>px; height:<%= data[:height] %>px"
           ></div>
         <% end %>
 
-        <% #in last case we use bottom: 0 instead of height %>
-        <% css = @free_time_hash[technician.id].last %>
+        <% #in last case we use bottom: 0 instead of height: h %>
+        <% data = @free_time_by_tech[technician.id].last %>
         <div class="free-time-cell"
-             style="top:<%= css[:top] %>px; bottom: 0px"
+             data-display-text="<%= data[:duration] %>"
+             style="top:<%= data[:top] %>px; bottom: 0px"
         ></div>
         <!-- END ABSOLUTE FREE TIMES -->
       </div>

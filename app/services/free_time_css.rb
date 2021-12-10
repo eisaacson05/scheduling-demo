@@ -1,8 +1,6 @@
-# Service for generating free times from a list of work_orders
-#
 module FreeTimeCss
 
-	# returns hash {tech_id: [{ top: t, height: h }, { top: t, height: h }, ...]}
+	# returns hash {tech_id: [{ top: t, height: h }, { top: t2, height: h2 }, ...]}
 	#
 	def self.generate(work_order_css)
 		work_orders_by_tech = work_order_css.group_by  { |item| item[:technician_id] }
@@ -19,8 +17,10 @@ module FreeTimeCss
 		heights = self.calc_heights(order_css)
 
 		# the free times before and after work are special cases
-		tops = [self.top_before_work, *tops, self.top_after_work(order_css.last)]
-		heights = [self.height_before_work(order_css.first), *heights, self.height_after_work]
+		tops = tops.prepend self.top_before_work
+		tops = tops.append self.top_after_work(order_css.last)
+		heights = heights.prepend self.height_before_work(order_css.first)
+		heights = heights.append self.height_after_work
 
 		[tops, heights].transpose.map { | t, h |  { top: t, height: h } }
 	end

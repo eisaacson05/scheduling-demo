@@ -14,8 +14,9 @@ class PublicController < ApplicationController
 		# handle work order css calculations (absolute value and height)
 		@valid_orders_css = WorkOrderCss::generate(@valid_orders)
 
-		# handle free time css calculations
-		@free_time_hash = FreeTimeCss::generate(@valid_orders_css)
+		# handle free time css calculations and duration calculations
+		free_time_by_tech = FreeTimeCss::generate(@valid_orders_css)
+		@free_time_by_tech = FreeTimeDuration::generate(free_time_by_tech, tod_range_ints)
 
 	end
 
